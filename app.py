@@ -12,7 +12,6 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import joblib
 
-# Inicialização da FastAPI
 app = FastAPI(
     title="Bitcoin LSTM Predictor API",
     description="API para previsão do preço do Bitcoin usando LSTM",
@@ -24,14 +23,13 @@ model = load_model("./lstm_bitcoin.h5")
 scaler = joblib.load("./scaler.save")
 WINDOW_SIZE = 60 
 
-# Modelo do payload recebido
 class PriceRequest(BaseModel):
     prices: list
 
 @app.post("/predict")
 def predict_price(request: PriceRequest):
     prices = request.prices
-    # Validação do input
+
     if not isinstance(prices, list) or len(prices) < WINDOW_SIZE:
         raise HTTPException(
             status_code=400, 
