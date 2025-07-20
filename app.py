@@ -4,6 +4,7 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi import Response
+from datetime import datetime
 
 
 from fastapi import FastAPI, HTTPException
@@ -42,6 +43,14 @@ def predict_price(request: PriceRequest):
     pred_scaled = model.predict(X_input)
     pred = scaler.inverse_transform(pred_scaled)
     return {"predicted_close": float(pred[0, 0])}
+
+@app.get("/healthcheck")
+def healthcheck():
+    """Health check endpoint to verify API status."""
+    return {
+        "message": "OK",
+        "timestamp": datetime.utcnow().isoformat()
+    }
 
 
 @app.get("/")
