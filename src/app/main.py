@@ -24,15 +24,22 @@ from datetime import datetime, timedelta
 MODEL_PATH = "models/pipeline_model_LSTM.pkl"
 pipe = pickle.load(open(MODEL_PATH, "rb"))
 
-print('a')
+
 
 def lambda_handler(event, context):
     try:
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s - %(levelname)s:%(funcName)s:%(message)s"
+        )
+
         # Input vem no body em formato JSON
         body = json.loads(event.get("body", "{}"))
         data = body.get("date")
+        logging.info(f"Data recebida: {data}")
 
         if not data:
+            logging.error("Campo 'date' ausente no corpo da requisição")
             return {
                 "statusCode": 400,
                 "body": json.dumps({"error": "Missing 'date' field"})
@@ -45,17 +52,20 @@ def lambda_handler(event, context):
 
         # Baixa os dados
         X = yf.download(symbol, start=start_date, end=end_date)
+        logging.info(f"Dados baixados para o período de {start_date} a {end_date}")
 
         # Verificação simples
         if X.empty:
+            logging.error("Nenhum dado retornado do Yahoo Finance")
             return {
                 "statusCode": 422,
                 "body": json.dumps({"error": "No data returned from Yahoo Finance"})
             }
 
         # Faz predição
-        print('b')
+        logging.info("Fazendo predição com o modelo")
         score = pipe.predict(X)
+        logging.info(f"Predição realizada: {score}")
 
         return {
             "statusCode": 200,
@@ -63,6 +73,7 @@ def lambda_handler(event, context):
         }
 
     except Exception as e:
+        logging.error(f"Erro ao processar a requisição: {e}")
         return {
             "statusCode": 500,
             "body": json.dumps({"error": str(e)})
