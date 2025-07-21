@@ -9,3 +9,4 @@ google-cloud-bigquery==3.11.4
 pytz==2023.3
 tensorflow
 joblib==1.2.0
+ddtrace==2.6.2
