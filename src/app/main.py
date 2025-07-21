@@ -1,4 +1,5 @@
 import os
+import logging
 import sys
 
 # Garante que o diretório raiz está no path
