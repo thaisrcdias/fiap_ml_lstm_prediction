@@ -1,0 +1,16 @@
+metricas_validacao:
+- mae: 1527.42
+  mape: 2.18
+  rmse: 2115.56
+path_model: models/modelo_LSTM.pkl
+path_scaler: models/scaled.pkl
+features: 
+- Close
+treino:
+- batch_size: 32
+  dropout: 0.2
+  epochs: 150
+  input_size: 1
+  loss_function: mean_absolute_error
+  neuronios: 1
+  window_size: 60
