@@ -14,7 +14,7 @@ selected_date = st.date_input("Selecione uma data", value=date.today())
 date_str = selected_date.strftime("%Y-%m-%d")
 
 # URL base da API
-url = "https://qniiuee0ck.execute-api.sa-east-1.amazonaws.com/predict"
+url = "https://qniiuee0ck.execute-api.sa-east-1.amazonaws.com/v1/lambda-model-bitcoin-api"
 
 payload = {
     "date": date_str
