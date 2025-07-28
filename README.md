@@ -14,10 +14,29 @@ Modelo preditivo de redes neurais Long Short Term Memory (LSTM) para predizer o 
 # Desenvolvimento Modelo
 Para desenvolvimento do modelo, utilizamos [este](./notebooks/Desenvolvimento_Modelo.ipynb) notebook.
 ## Coleta dos Dados
+Os dados históricos do **Bitcoin (BTC-USD)** são coletados automaticamente da API do **Yahoo Finance**.
+Para isso, utilizamos a função download da biblioteca yfinance, que permite obter facilmente cotações de ativos financeiros em diferentes períodos.
+Os dados são filtrados para manter apenas o preço de fechamento diário (Close).
+Amostras ausentes (valores nulos) são descartadas para garantir a qualidade da série.
+## Exploração dos Dados (EDA)
+Nesta etapa, é realizado um gráfico de linha mostrando a evolução do preço de fechamento do Bitcoin entre 2018 e 2025.
+Também são apresentadas estatísticas descritivas (média, desvio padrão, valores mínimos e máximos) para fornecer um panorama rápido sobre a variação e tendências do ativo ao longo do tempo.
+### Normalização
+Antes de alimentar os dados no modelo LSTM, os valores do preço de fechamento são normalizados para o intervalo de 0 a 1, utilizando a técnica MinMaxScaler. Isso garante que o modelo aprenda padrões relevantes, independentemente da magnitude dos valores, acelerando o treinamento e evitando problemas de instabilidade numérica.
+O normalizador é salvo para que, no momento da previsão em produção, seja possível aplicar a mesma transformação nos dados de entrada, mantendo a consistência dos resultados.
 ## Preparação dos dados
-### Notebook com todas as variáveis
-### Explicar a window_size que decidimos seguir
+Os dados são organizados em sequências de 60 dias consecutivos. Cada sequência é usada como entrada para o modelo, com o objetivo de prever o valor do próximo dia. Essa abordagem permite ao LSTM capturar padrões temporais e dependências de longo prazo na série histórica de preços.
+O formato resultante é:
+- X: lista de janelas deslizantes de 60 dias cada
+- y: o valor do próximo dia após cada janela
+- 
 ## Treino, Teste e Validação
+
+A base de dados processada é dividida em dois subconjuntos:
+- 80% para treino do modelo (onde ele aprende os padrões da série)
+- 20% para validação (testar a capacidade de generalização do modelo em dados que ele nunca viu)
+
+Essa separação é fundamental para garantir a avaliação justa da performance do modelo e evitar overfitting.
 ## Construção do modelo
 
 Para construção do modelo é necessário criar a rede LSTM. Construímos uma função que é destinada para o treinamento da rede, que utiliza o `tensorflow` como base. Abaixo, a descrição dos parâmetros:
