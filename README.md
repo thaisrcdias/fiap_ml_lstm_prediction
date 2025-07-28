@@ -175,4 +175,5 @@ curl -X POST https://1q0dp053tg.execute-api.sa-east-1.amazonaws.com/v1/lambda-mo
 
 # Visualização via Streamlit
 
+<img width="753" height="333" alt="image" src="https://github.com/user-attachments/assets/2f3dc806-6713-4998-8c57-f09a7ebafb27" />
 
