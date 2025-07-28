@@ -29,7 +29,7 @@ Os dados são organizados em sequências de 60 dias consecutivos. Cada sequênci
 O formato resultante é:
 - X: lista de janelas deslizantes de 60 dias cada
 - y: o valor do próximo dia após cada janela
-- 
+  
 ## Treino, Teste e Validação
 
 A base de dados processada é dividida em dois subconjuntos:
@@ -37,6 +37,7 @@ A base de dados processada é dividida em dois subconjuntos:
 - 20% para validação (testar a capacidade de generalização do modelo em dados que ele nunca viu)
 
 Essa separação é fundamental para garantir a avaliação justa da performance do modelo e evitar overfitting.
+
 ## Construção do modelo
 
 Para construção do modelo é necessário criar a rede LSTM. Construímos uma função que é destinada para o treinamento da rede, que utiliza o `tensorflow` como base. Abaixo, a descrição dos parâmetros:
