@@ -1,5 +1,5 @@
 # Contexto do Projeto
-
+Modelo preditivo de redes neurais Long Short Term Memory (LSTM) para predizer o valor de fechamento da bolsa de valores, no caso do Bitcoin.
 # Arquitetura do Projeto
 <img width="574" height="631" alt="Arquitetura LSTM drawio (4)" src="https://github.com/user-attachments/assets/aabb9e66-3524-4fbe-9c89-1cc435337521" />
 
