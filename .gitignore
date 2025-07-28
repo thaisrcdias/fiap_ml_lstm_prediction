@@ -1,0 +1,10 @@
+.env
+.idea
+.venv
+env/
+__pycache__
+__pycache__/
+.venv/
+.venv
+.env_~
+data
