@@ -3,6 +3,14 @@ Modelo preditivo de redes neurais Long Short Term Memory (LSTM) para predizer o 
 # Arquitetura do Projeto
 <img width="574" height="631" alt="Arquitetura LSTM drawio (4)" src="https://github.com/user-attachments/assets/aabb9e66-3524-4fbe-9c89-1cc435337521" />
 
+- **Yahoo Fincance**: Fonte de dados onde recuperamos os valores históricos/atual da criptomoeda bitcnoin.
+- **Notebook LSTM**: Coleta dos dados, normalização dos dados, construção do modelo, treinamento, avaliação.
+- **Amazon ECR**: Serviço de registro de imagens de contêiner (Docker) da AWS. Armazena a imagem Docker da API que serve o modelo LSTM treinado.
+- **AWS Lambda**: Serviço de computação serverless da AWS. Executa a API de previsão de preços como função sem a necessidade de gerenciar servidores, utilizando a imagem armazenada no ECR.
+- **Amazon API Gateway**: Responsável por expor endpoints HTTP públicos e rotear as requisições dos usuários para a função Lambda.
+- **CloudWatch**: Serviço de monitoramento da AWS, que coleta logs e métricas da execução da Lambda, possibilitando análise de performance e troubleshooting.
+- **Frontend (exemplo de interface)**: Interface gráfica simples que permite ao usuário inserir dados, enviar requisições à API e visualizar os resultados da previsão.c
+
 # Desenvolvimento Modelo
 Para desenvolvimento do modelo, utilizamos [este](./notebooks/Desenvolvimento_Modelo.ipynb) notebook.
 ## Coleta dos Dados
