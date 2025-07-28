@@ -1,5 +1,8 @@
 # Contexto do Projeto
-![Arquitetura](images/arquitetura.jpeg)
+
+# Arquitetura do Projeto
+<img width="574" height="631" alt="Arquitetura LSTM drawio (4)" src="https://github.com/user-attachments/assets/aabb9e66-3524-4fbe-9c89-1cc435337521" />
+
 # Desenvolvimento Modelo
 Para desenvolvimento do modelo, utilizamos [este](./notebooks/Desenvolvimento_Modelo.ipynb) notebook.
 ## Coleta dos Dados
